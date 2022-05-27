@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<!--v-else标签需要紧跟在v-if的标签之后，中间不能有其他标签-->
+			<h3 v-if="code == 1">从前有座山</h3>
+			<h3 v-else>山里有座庙</h3>
+			
+			
+			<h3 v-if="code >= 90">优秀</h3>
+			<h3 v-else-if="code >= 80">良好</h3>
+			<h3 v-else-if="code >= 70">中等</h3>
+			<h3 v-else-if="code >= 60">及格</h3>
+			<h3 v-else>不想理你</h3>
+			
+			
+			v-if : <label v-if="gender=='M'">男</label> <br/>
+			v-show: <label v-show="gender=='M'">男</label><br/>
+			<input type="text" v-model="gender"/>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					code:85,
+					gender:"F"
+				}
+			});
+		</script>
+	</body>
+</html>

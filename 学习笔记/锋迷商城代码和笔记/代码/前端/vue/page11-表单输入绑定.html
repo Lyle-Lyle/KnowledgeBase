@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<!--文本输入框、密码输入框-->
+			<input type="text" v-model="text"/><br/>
+			<input type="password" v-model="pwd"/><br/>
+			
+			<!--单选按钮-->
+			<input type="radio" v-model="opt1" value="A"/>A  3
+			<input type="radio" v-model="opt1" value="B"/>B  4
+			<input type="radio" v-model="opt1" value="C"/>C  5
+			<input type="radio" v-model="opt1" value="D"/>D  6  <br/>
+			
+			<!--复选框，绑定的是一个数组-->
+			<input type="checkbox" v-model="opt2" value="篮球"/>篮球 <br/>
+			<input type="checkbox" v-model="opt2" value="足球"/>足球 <br/>
+			<input type="checkbox" v-model="opt2" value="羽毛球"/>羽毛球 <br/>
+			<input type="checkbox" v-model="opt2" value="乒乓球"/>乒乓球<br/>
+			
+			<!--下拉菜单select：绑定一个字符串-->
+			<select v-model="city">
+				<option value="BJ">北京</option>
+				<option value="SH">上海</option>
+				<option value="GZ">广州</option>
+				<option value="SZ">深圳</option>
+			</select>
+			<br/>
+			<!--下拉菜单select：如果有multiple表示可多选，需要绑定一个数组-->
+			<select v-model="cities" multiple>
+				<option value="BJ">北京</option>
+				<option value="SH">上海</option>
+				<option value="GZ">广州</option>
+				<option value="SZ">深圳</option>
+			</select>
+			<br/>
+			<button type="button" @click="doSearch">测试</button>
+		</div>
+		
+		<script type="text/javascript">
+
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					text:"aaa",
+					pwd:"111111",
+					opt1:"C",
+					opt2:["篮球","羽毛球"],
+					city:"SZ",
+					cities:["BJ","SZ"]
+				},
+				methods:{
+					doSearch:function(){
+						alert(vm.cities);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

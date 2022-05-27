@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<input type="text" v-model="str1"/><br/>
+			<input type="text" v-model="str2"/><br/>
+			{{str3}}
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					str1:"千锋",
+					str2:"武汉",
+					str3:"千锋武汉",
+					mycolor:"red"
+				},
+				watch:{
+					str1:function(){
+						this.str3 = this.str1 +this.str2; 
+					},
+					str2:function(){
+						this.str3 = this.str1 +this.str2; 
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

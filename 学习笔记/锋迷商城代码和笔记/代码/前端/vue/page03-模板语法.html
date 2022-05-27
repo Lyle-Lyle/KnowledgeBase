@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			{{str}}
+			<p v-html="str"></p>
+			{{ message.split('').reverse().join('') }}<br />
+			<img v-bind:['s'+attr]="s" height="100"/>
+			<div style="width: 100px; height: 100px;background: aqua;" @click.once="test()">
+				<input type="button" value="测试"/>
+			</div>
+			
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					str:"<label style='color:red'>测试</label>",
+					message:"qfedu",
+					s:"img/01.jpg",
+					attr:"rc"
+				},
+				methods:{
+					test:function(){
+						alert();
+					},
+					test2:function(){
+						alert(2);
+					}
+				}
+			});
+			
+			
+		</script>
+		
+	</body>
+</html>

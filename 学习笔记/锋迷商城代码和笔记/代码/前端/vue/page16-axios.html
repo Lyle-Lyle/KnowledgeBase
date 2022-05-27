@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/axios.min.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<table>
+				<tr>
+					<td>{{song.name}}</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+			
+			
+			<button type="button" @click="test1">测试1</button>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					song:{
+						
+					}
+				},
+				methods:{
+					test1:function(){
+						
+						//发送异步请求
+						axios.get("http://localhost:9999/music/detail?id=25640392").then( (res)=>{
+							// res并不是接口返回的数据，而是表示一个响应对象；res.data才表示接口响应的数据
+							if(res.data.code == 200){
+								this.song = res.data.songs[0];
+							}
+						});
+
+					}
+				}
+			});
+			
+			
+			//axios.all([listMusics(),getMusicDetail()]).then(axios.spread(function (res1, res2) {
+			//    // 两个请求现在都执行完成
+			//    console.log(res1);
+			//    console.log(res2);
+			//}));
+
+			function listMusics() {
+			  return axios.get('http://localhost:9999/music/search?s=成都');
+			}
+			
+			function getMusicDetail() {
+			  return axios.get('http://localhost:9999/music/detail?id=25640392');
+			}
+		</script>
+		
+	</body>
+</html>

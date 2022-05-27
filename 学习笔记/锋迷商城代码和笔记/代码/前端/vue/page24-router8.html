@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="container">
+			<router-link to="/a/102">路径A</router-link>
+			<router-view></router-view>
+		</div>
+		<script type="text/javascript">
+			const t1 = {
+				props:["id"],
+				template:`<div style='width:400px; height:200px; border:blue 1px solid'>
+							index：{{id}}
+						  </div>`
+			};
+			
+			const myrouter = new VueRouter({
+				routes:[
+					{
+						path:"/a/:id",
+						props:true,
+						component:t1
+						
+					}
+				]
+			});
+			
+			var vm = new Vue({
+				el:"#container",
+				router:myrouter
+			});
+		</script>
+		
+	</body>
+</html>

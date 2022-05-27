@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<label v-once>{{str}}</label><br/>
+			<label>{{str}}</label><br/>
+			<input type="text" v-model="str"/>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{},
+				beforeCreate:function(){
+					//1.data初始化之前执行，不能操作data
+				},
+				created:function(){
+					//2.data初始化之后执行，模板加载之前，可以修改/获取data中的值
+					console.log(this.str);
+					//this.str = "山里有座庙";
+				},
+				beforeMount:function(){
+					//3.模板加载之后，数据初始渲染（挂载）之前，可以修改/获取data中的值
+					//this.str = "庙里有口井";
+				},
+				mounted:function(){
+					//4.数据初始渲染（挂载）之后，可以对data中的变量进行修改，但是不会影响v-once的渲染
+					//this.str = "井里有只蛙";
+				},
+				beforeUpdate:function(){
+					//5.数据渲染之后，当data中的数据发生变化触发重新渲染，渲染之前执行此函数
+					//  data数据被修改之后，重新渲染到页面之前
+					console.log("-----"+this.str);
+					this.str = "从前有座山2";
+				},
+				updated:function(){
+					//6.data数据被修改之后，重新渲染到页面之后
+					//this.str = "从前有座山3";
+				},
+				beforeDestroy:function(){
+					//7.实例销毁之前
+				},
+				destroyed:function(){
+					//8.实例销毁之后
+				}
+				
+			});
+			
+			
+		</script>
+		
+	</body>
+</html>

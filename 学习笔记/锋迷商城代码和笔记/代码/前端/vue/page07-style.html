@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<!--当使用v-bind绑定内联样式时：
+				1. 使用{}定义style样式，才能获取data中的值，{}要遵循JSON格式
+				2. {}中不在使用style样式属性名“font-size”,而要使用对应的js属性名
+				border-style-width ---  borderStyleWidth
+			-->
+			<div v-bind:style="{color: colorname,fontSize: fontsize+'px' }">千锋Java-WH2010</div>
+				
+			<!--我们可以直接为style属性绑定一个data中定义好的内联样式的字符串-->
+			<div v-bind:style="mystyle1">千锋Java-WH2010</div>
+			
+			<!--我们可以直接为style属性绑定一个data中定义好的内联样式的对象-->
+			<div v-bind:style="mystyle2">千锋Java-WH2010</div>
+			
+			<!--可以在同一个style上通过数组引用多个内联样式的对象-->
+			<div v-bind:style="[mystyle2,mystyle3]">千锋Java-WH2010</div>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					colorname:"green",
+					fontsize:30,
+					mystyle1:"color:orange;font-size:45px",
+					mystyle2:{
+						color:"blue",
+						fontSize:"40px"
+					},
+					mystyle3:{
+						textShadow:"orange 3px 3px 5px"
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="container">
+			<input type="text" v-model="rname"/>
+			<router-link :to="{name:rname}">t1</router-link>
+			<button type="button" @click="test">按钮1</button>
+			<router-view></router-view>
+		</div>
+		<script type="text/javascript">
+			const t1 = {
+				template:"<div style='width:400px; height:200px; border:blue 1px solid'>t1</div>"
+			};
+			
+			const t2 = {
+				template:"<div style='width:400px; height:200px; border:red 1px solid'>t2</div>"
+			};
+
+			const myrouter = new VueRouter({
+				routes:[
+					{
+						path:"/a",
+						name:"r1",
+						component:t1
+					},
+					{
+						path:"/b",
+						name:"r2",
+						component:t2
+					}
+				]
+			});
+			
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					rname:"r1"
+				},
+				router:myrouter,
+				methods:{
+					test:function(){
+						myrouter.push({name:vm.rname});
+					}
+				}
+			});
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="container">
+			<router-link to="/a">首页</router-link>
+			<router-link to="/a/c1">首页-c1</router-link>
+			<router-link to="/a/c2">首页-c2</router-link>
+			<router-view></router-view>
+		</div>
+		<script type="text/javascript">
+			const t1 = {
+				template:"<div style='width:400px; height:200px; border:blue 1px solid'>index<hr/><router-view></router-view></div>"
+			};
+			
+			const t2 = {template:`<div>t2</div>`};
+			const t3 = {template:`<div>t3</div>`};
+			
+			
+			const myrouter = new VueRouter({
+				routes:[
+					{
+						path:"/a",
+						component:t1,
+						children:[
+							{
+								path:"c1",
+								component:t2
+							},
+							{
+								path:"c2",
+								component:t3
+							}
+						]
+					}
+				]
+			});
+			
+			var vm = new Vue({
+				el:"#container",
+				router:myrouter
+			});
+		</script>
+		
+	</body>
+</html>

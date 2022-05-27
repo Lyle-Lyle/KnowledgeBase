@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/my-components.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<header-bar :title="sss">
+				<input/><button>搜索</button>
+			</header-bar>
+		</div>
+		
+		<script type="text/javascript" src="js/my-components.js" ></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					sss:"自定义标题"
+				},
+				methods:{
+					test2:function(){
+						alert("vue实例中定义的函数");
+					}
+				
+				}
+			});
+		</script>
+	</body>
+</html>

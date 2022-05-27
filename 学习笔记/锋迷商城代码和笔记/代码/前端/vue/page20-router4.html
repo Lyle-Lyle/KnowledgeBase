@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="container">
+			<button type="button" @click="test">按钮1</button><button type="button" @click="test2">back</button>
+			<router-view></router-view>
+		</div>
+		<script type="text/javascript">
+			const t1 = {
+				template:"<div style='width:400px; height:200px; border:blue 1px solid'>index:{{$route.params.id}}</div>"
+			};
+
+			const myrouter = new VueRouter({
+				routes:[
+					{
+						path:"/a",
+						component:t1
+					}
+				]
+			});
+			
+			var vm = new Vue({
+				el:"#container",
+				router:myrouter,
+				methods:{
+					test:function(){
+						//js代码实现路由跳转：编程式导航
+						
+						//1.字符串
+						myrouter.push("/a");
+						//myrouter.replace("/a");
+						
+						//2.对象
+						//myrouter.push({path:"/a"});
+						
+						//3.命名的路由  name参数指的是定义路由时指定的名字
+						//myrouter.push({name:"r1",params:{id:101}});
+						
+						//4.URL传值，相当于/a?id=101
+						//myrouter.push({path:"/a",query:{id:101}});
+					}
+					,test2:function(){
+						myrouter.go(-1);
+					}
+				}
+			});
+		</script>
+		
+	</body>
+</html>

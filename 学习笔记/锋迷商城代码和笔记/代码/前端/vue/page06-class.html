@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.mystyle1{
+				width: 200px;
+				height: 100px;
+				background: orange;
+			}
+			.mystyle3{
+				width: 200px;
+				height: 100px;
+				background: black;
+			}
+			.my-style2{
+				border-radius: 10px;
+			}
+		</style>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<!--如果b1为true就加载 mystyle1；如果b2为true，则加载my-style2-->
+			<div :class="{mystyle1:b1,'my-style2':b2}"></div>
+			
+			<!--为class属性加载多个样式名 -->
+			<div :class="[chooseStyle1,chooseStyle2]"></div>
+			
+			<!--如果b3为true，则class='mystyle3'; 否则class='mystyle1'
+			如果在三目运算中使用样式名则需加单引号，不加单引号则表示从data变量中获取样式名-->
+			<div :class="[b3 ? 'mystyle3' : 'mystyle1']"></div>
+			<div :class="[b3 ? chooseStyle3 : chooseStyle1]"></div>
+			
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					b1:true,
+					b2:true,
+					b3:false,
+					chooseStyle1:"mystyle1",
+					chooseStyle2:"my-style2",
+					chooseStyle3:"mystyle3"
+				}
+			});
+		</script>
+	</body>
+</html>

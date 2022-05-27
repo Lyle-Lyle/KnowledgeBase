@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="container">
+			<router-link to="/a">t1</router-link>
+			<router-link to="/b">t2</router-link>
+			
+			<!--路由视图-->
+			<!--如果在HTML中有一个以上的路由视图router-view，在路由中需要使用components映射多个组件-->
+			<router-view name="v1"></router-view>
+			<router-view name="v2"></router-view>
+		</div>
+		<script type="text/javascript">
+			const t11 = {
+				template:"<div style='width:400px; height:200px; border:blue 1px solid'>t11</div>"
+			};
+			const t12 = {
+				template:"<div style='width:400px; height:200px; background:pink'>t12</div>"
+			};
+			
+			const t21 = {
+				template:"<div style='width:400px; height:200px; border:red 1px solid'>t21</div>"
+			};
+			const t22 = {
+				template:"<div style='width:400px; height:200px; background:yellow'>t22</div>"
+			};
+
+			const myrouter = new VueRouter({
+				routes:[
+					{
+						path:"/a",
+						components:{
+							v1:t11,
+							v2:t12
+						}
+					},
+					{
+						path:"/b",
+						components:{
+							v1:t21,
+							v2:t22
+						}
+					}
+				]
+			});
+			
+			var vm = new Vue({
+				el:"#container",
+				router:myrouter
+			});
+		</script>
+		
+	</body>
+</html>

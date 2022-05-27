@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<form action="https://www.baidu.com">
+				<button type="submit" class="btn btn-success btn-xs" @click.prevent="test" >测试</button>
+			</form>
+			
+			<div style="width: 200px; height: 200px; background: red;" @click.self="method1">
+				<div style="width: 150px; height: 150px; background: green;" @click="method2">
+					<button type="button" @click.stop="method3">测试</button>
+				</div>
+			</div>
+			
+			
+			<input type="text" @keyup.ctrl.j="method4"/>
+		</div>
+		
+		
+		<script type="text/javascript">
+			Vue.config.keyCodes.j=74;
+			
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					
+				},
+				methods:{
+					test:function(){
+						console.log("---test");
+					},
+					method1:function(){
+						alert("1");
+					},
+					method2:function(){
+						alert("2");
+					},
+					method3:function(){
+						alert("3");
+					},
+					method4:function(){
+						alert("4");
+					}
+				}
+			});
+			
+			
+			
+		</script>
+	</body>
+</html>

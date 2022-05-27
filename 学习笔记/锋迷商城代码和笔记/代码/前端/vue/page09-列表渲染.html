@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.js" ></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<ul>
+				<li v-for="c in categories">
+					<a :href="'query?cid='+c.cid">{{c.cname}}</a>
+				</li>				
+			</ul>
+			
+			<table class="table table-bordered">
+				<tr>
+					<th>学号</th>
+					<th>照片</th>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>年龄</th>
+					<th>操作</th>
+				</tr>
+				<template v-for="s,index in stus">
+					<tr :id="'tr'+s.stuNum"> 
+						<td>{{s.stuNum}}</td>
+						<td>
+							<img height="30" :src="s.stuImg"/>
+						</td>
+						<td>{{s.stuName}}</td>
+						<td>
+							<!--{{s.stuGender=='M'?'男':'女'}}-->
+							<img v-if="s.stuGender=='M'" src="img/m.bmp">
+							<img v-else src="img/f.bmp">
+						</td>
+						<td>{{s.stuAge}}</td>
+						<td>
+							
+							<button type="button" class="btn btn-danger btn-xs" v-on:click="doDelete(s.stuNum,s.stuName,$event)"
+								 :data-simg="s.stuImg">删除</button>
+								 
+							<button type="button" class="btn btn-success btn-xs" @click="doUpdate" :data-snum="s.stuNum"
+								:data-sname="s.stuName" :data-simg="s.stuImg">修改</button>
+						</td>
+					</tr>
+				</template>
+			</table>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					categories:[
+						{
+							cid:1,
+							cname:"华为"
+						},
+						{
+							cid:2,
+							cname:"小米"
+						},
+						{
+							cid:3,
+							cname:"OPPO"
+						},
+						{
+							cid:4,
+							cname:"VIVO"
+						}
+					],
+					stus:[
+						{
+							stuNum:"10010",
+							stuImg:"img/01.jpg",
+							stuName:"Tom",
+							stuGender:"M",
+							stuAge:20
+						},
+						{
+							stuNum:"10011",
+							stuImg:"img/02.jpg",
+							stuName:"LiLei",
+							stuGender:"M",
+							stuAge:20
+						},
+						{
+							stuNum:"10012",
+							stuImg:"img/03.jpg",
+							stuName:"Lucy",
+							stuGender:"F",
+							stuAge:20
+						},
+						{
+							stuNum:"10013",
+							stuImg:"img/04.jpg",
+							stuName:"Polly",
+							stuGender:"F",
+							stuAge:20
+						}
+					]
+				},
+				methods:{
+					doDelete:function(snum,sname,event){
+						console.log("----delete:"+snum+"   "+sname)
+						console.log(event.srcElement.dataset);
+					},
+					doUpdate:function(event){
+						//如果v-on绑定的js函数没有参数，调用的时候可以省略()，同时可以给js函数一个event参数(事件对象)
+						// 1. event 表示触发当前函数的事件
+						// 2. event.srcElement 表示发生事件的元素---修改按钮
+						// 3. event.srcElement.dataset 表示按钮上绑定的数据集（data-开头的属性）
+						console.log("-----update")
+						var stu = event.srcElement.dataset;
+						
+					}
+				}
+			});
+			
+			
+			
+		</script>
+	</body>
+</html>

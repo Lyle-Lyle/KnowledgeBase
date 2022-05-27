@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/my-components.css" />
+		<style type="text/css">
+			a{
+				color:white;
+				font-size: 18px;
+				background: #00BFFF;
+				border:#00BFFF 1px solid;
+				padding: 3px 15px;
+				text-decoration: none;
+				border-radius: 3px;
+			}
+			a:hover{
+				background: white;
+				color: #00BFFF;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<!--组件的引用必须在vue实例指定的容器中-->
+			<header-bar :title="str" @my-event="parentMethod">
+				<div>
+					<a href="#">首页</a>
+					<a href="#">首页</a>
+					<a href="#">首页</a>
+					<a href="#">首页</a>
+				</div>
+			</header-bar>
+			
+		</div>
+		
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/my-components.js" ></script>
+		<script type="text/javascript">
+			// vue实例本身就是一个组件（模板就是el指定容器 ,data就是组件数据,methods就是组件的事件函数）
+			// 在vue实例指定的el容器中引用的组件 成为子组件 ,当前vue实例就是父组件
+			var vm = new Vue({
+				el:"#container",
+				data:{
+					str:"千锋武汉Java2010电商平台",
+					str3:""
+				},
+				methods:{
+					parentMethod:function(p){
+						vm.str3 = p;
+					}
+				}
+			});
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="container">
+			<router-link to="/a">路径A</router-link>
+			<router-link to="/wahaha">路径A</router-link>
+			<router-link to="/b">路径B</router-link>
+			<router-view></router-view>
+		</div>
+		<script type="text/javascript">
+			const t1 = {
+				template:"<div style='width:400px; height:200px; border:blue 1px solid'>index</div>"
+			};
+			
+			
+			const myrouter = new VueRouter({
+				routes:[
+					{
+						path:"/a",
+						name:"r1",
+						alias:"/wahaha",
+						component:t1
+					},
+					{
+						path:"/b",
+						//redirect:"/a"   //根据路由路径重定向
+						redirect:{name:"r1"}  //根据路由命名重定向
+					}
+				]
+			});
+			
+			var vm = new Vue({
+				el:"#container",
+				router:myrouter
+			});
+		</script>
+		
+	</body>
+</html>
